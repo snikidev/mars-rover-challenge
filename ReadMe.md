@@ -73,3 +73,18 @@ LLFFFLFLFL
 3 3 N LOST
 2 4 S LOST
 ```
+
+## Solution
+
+To run the solution you need to have [`python3`](https://www.python.org/downloads/) installed
+
+```
+python3 main.py
+```
+
+To run the tests
+
+```
+python3 test_rover.py
+python3 test_planet.py
+```
