@@ -12,6 +12,7 @@ class Rover(object):
         self.y = y
         self.direction = direction
         self.planet = planet
+        self.lost = False
 
     def forward(self):
         self.x += SHIFTS[DIRECTIONS.index(self.direction)][0]
@@ -31,8 +32,10 @@ class Rover(object):
                 self.turn(command)
             else:
                 self.forward()
-        self.lost = self.x > self.planet.x or self.y > self.planet.y
-        print(self.x, self.y, self.direction, "Lost" if self.lost else "")
+                if (self.x > self.planet.x or self.y > self.planet.y):
+                    self.lost = True
+
+        print(self.x, self.y, self.direction, "LOST" if self.lost else "")
 
     def get_position(self):
-        return (self.x, self.y)
+        return self.x, self.y

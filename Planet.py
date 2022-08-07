@@ -23,3 +23,4 @@ class Planet(object):
         """
         for scent in self.scent:
             print(scent)
+        return self.scent

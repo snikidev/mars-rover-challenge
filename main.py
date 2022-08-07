@@ -73,6 +73,9 @@ def input_commands():
     while True:
         commands = input("Please enter commands for the Rover (or 'exit'): ")
 
+        if commands.lower() == "exit":
+            raise SystemExit
+
         if (commands.lower() == "exit"):
             return commands
         elif (all(ch.upper() in allowed_commands for ch in commands) and len(commands) <= 100):
@@ -99,16 +102,11 @@ def main():
 
         commands = input_commands()
 
-        if commands.lower() == "exit":
-            break
-
         rover.execute(commands)
 
-        current_x, current_y = rover.get_position()
-        if (current_x > mars.x or current_y > mars.y):
-            mars.add_scent(current_x, current_y)
-
-    mars.print_scents()
+        if (rover.lost):
+            x, y = rover.get_position()
+            mars.add_scent(x, y)
 
 
 if __name__ == "__main__":
