@@ -21,7 +21,7 @@ def input_planet_size():
             print("Those were not numbers. Try again or type 'exit' to finish.")
             continue
 
-        # Continue validation of numbers
+        # Validate that width and height are as per requirements and not negative
         if width > 0 and height > 0 and width <= 50 and height <= 50:
             return width, height
 
@@ -73,11 +73,8 @@ def input_commands():
     while True:
         commands = input("Please enter commands for the Rover (or 'exit'): ")
 
-        if commands.lower() == "exit":
-            raise SystemExit
-
         if (commands.lower() == "exit"):
-            return commands
+            raise SystemExit
         elif (all(ch.upper() in allowed_commands for ch in commands) and len(commands) <= 100):
             return commands
         else:
@@ -105,8 +102,8 @@ def main():
         rover.execute(commands)
 
         if (rover.lost):
-            x, y = rover.get_position()
-            mars.add_scent(x, y)
+            current_x, current_y = rover.get_position()
+            mars.add_scent(current_x, current_y)
 
 
 if __name__ == "__main__":
